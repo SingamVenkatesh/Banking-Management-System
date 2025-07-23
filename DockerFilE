@@ -1,6 +1,16 @@
 FROM openjdk:17
+
+# Set working directory
 WORKDIR /app
+
+# Copy all files into the image
 COPY . .
-RUN javac -d out $(find . -name "*.java")
+
+# Compile all Java files to /app/out
+RUN mkdir out && javac -d out $(find . -name "*.java")
+
+# Set working directory to compiled classes
 WORKDIR /app/out
-CMD ["java", "main_Class"]
+
+# Replace com.bank.Main with your actual Main class name (with full package path if any)
+CMD ["java", "Bank.Management.System.main_Class"]
